@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>个人主页</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4da1e0;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      animation: fade-in 1s forwards;
+    }
+
+    @keyframes fade-in {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    h1, h2, p {
+      text-align: center;
+    }
+
+    .avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto;
+      display: block;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transform: scale(0.8);
+      animation: pop-in 1s ease-in-out forwards;
+    }
+
+    @keyframes pop-in {
+      0% {
+        transform: scale(0.8);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    footer {
+      background-color: #4da1e0;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* 隐藏彩蛋按钮样式 */
+    #easterEggBtn {
+      display: none;
+    }
+
+    /* 彩蛋样式 */
+    .easter-egg {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+    }
+
+    .easter-egg h1 {
+      font-size: 48px;
+      color: red;
+      text-align: center;
+      padding-top: 200px;
+      text-shadow: 0 0 10px red;
+      animation: blood-drip 0.8s infinite alternate;
+    }
+
+    @keyframes blood-drip {
+      0% {
+        text-shadow: 0 0 10px red;
+      }
+      50% {
+        text-shadow: 0 0 20px red;
+      }
+      100% {
+        text-shadow: 0 0 10px red;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>个人主页</h1>
+  </header>
+
+  <div class="container">
+    <h2>个人介绍</h2>
+    <img src="https://www.pp3.cn/uploads/20120418lw/13.jpg" alt="头像" class="avatar">
+    <p>我是HHC</p>
+    <p>我喜欢打棒球，编程，以及玩英雄联盟。</p>
+  </div>
+
+  <!-- 添加隐藏的彩蛋按钮 -->
+  <button id="easterEggBtn" onclick="showEasterEgg()">点击触发隐藏彩蛋</button>
+
+  <!-- 彩蛋 -->
+  <div class="easter-egg">
+    <h1>你触及到你不能知道的东西了！</h1>
+  </div>
+
+  <footer>
+    <p>版权所有 &copy; 2023 个人主页</p>
+  </footer>
+
+  <script>
+    // 检测键盘按下事件
+    document.addEventListener("keydown", function(event) {
+      // 检查按下的键是否是 "HHC"，并将按钮显示出来
+      if (event.key.toLowerCase() === "h" || event.key.toLowerCase() === "c") {
+        document.getElementById("easterEggBtn").style.display = "block";
+      }
+    });
+
+    // 显示隐藏彩蛋
+    function showEasterEgg() {
+      // 隐藏原内容，显示彩蛋
+      document.querySelector(".container").style.display = "none";
+      document.querySelector(".easter-egg").style.display = "block";
+    }
+  </script>
+</body>
+</html>
