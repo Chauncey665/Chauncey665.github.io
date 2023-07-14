@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>HHC的资料整合</title>
+
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+  }
+
+  header {
+    background-color: #4da1e0;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #d9eaf9;
+    overflow: hidden;
+  }
+
+  nav li {
+    float: left;
+  }
+
+  nav li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  nav li a:hover {
+    background-color: #8db7d9;
+  }
+
+  section {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fade-in-out 0.5s ease;
+  }
+
+  @keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  footer {
+    background-color: #4da1e0;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .btn-subject {
+    background-color: #8db7d9;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-subject:hover {
+    background-color: #5b96c2;
+  }
+
+  .btn-return {
+    background-color: #8db7d9;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-return:hover {
+    background-color: #5b96c2;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    background-color: #d9eaf9;
+    display: none;
+    z-index: 1;
+  }
+
+  .dropdown-menu li {
+    float: none;
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-menu li a:hover {
+    background-color: #8db7d9;
+  }
+#fireworks-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.ball {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: explode 1s forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+</style>
+
+  <script>
+  function showSubjectContent(subject) {
+    var sections = document.getElementsByTagName("section");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].style.display = "none";
+    }
+    document.getElementById(subject).style.display = "block";
+  }
+
+  function showAllSubjects() {
+    var sections = document.getElementsByTagName("section");
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].style.display = "block";
+    }
+  }
+  window.onload = function() {
+    showAllSubjects();
+  };
+
+  function toggleDropdown(element) {
+    var dropdownMenu = element.nextElementSibling;
+    dropdownMenu.style.display = dropdownMenu.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function goToHomepage() {
+  // 修改下面的链接为您的个人主页地址
+  var filePath = "C:\\Users\\35064\\Desktop\\测试\\个人主页\\个人主页.html";
+  var url = "file:///" + filePath.replace(/\\/g, "/");
+  window.location.href = url;
+}
+
+document.addEventListener('click', function(event) {
+  var fireworksContainer = document.getElementById('fireworks-container');
+  var firework = document.createElement('span');
+  firework.classList.add('firework');
+  firework.style.left = event.clientX + 'px';
+  firework.style.top = event.clientY + 'px';
+  fireworksContainer.appendChild(firework);
+
+  setTimeout(function() {
+    firework.remove();
+  }, 1000);
+});
+
+  </script>
+
+</head>
+<body>
+  <header>
+  <h1>HHC的资料整合</h1>
+  <img src="file:///C:/Users/35064/Pictures/视频项目/animal-big-black-and-white-carnivore.jpg" alt="头像" width="100" height="100" style="border-radius: 50%; object-fit: cover;">
+
+</header>
+<div id="fireworks-container"></div>
+
+
+  <nav>
+    <ul>
+      <li><a href="javascript:void(0);" onclick="showSubjectContent('math');" class="btn-subject">数学</a></li>
+      <li><a href="javascript:void(0);" onclick="showSubjectContent('english');" class="btn-subject">英语</a></li>
+      <li><a href="javascript:void(0);" onclick="showSubjectContent('science');" class="btn-subject">科学</a></li>
+      <li class="dropdown">
+        <a href="javascript:void(0);" onclick="toggleDropdown(this);" class="btn-subject">历史</a>
+        <ul class="dropdown-menu" style="display:none;">
+          <li><a href="javascript:void(0);" onclick="showSubjectContent('history');" class="btn-subject">世界史</a></li>
+          <li><a href="javascript:void(0);" onclick="showSubjectContent('us-history');" class="btn-subject">美国史</a></li>
+          <li><a href="javascript:void(0);" onclick="showSubjectContent('art-history');" class="btn-subject">艺术史</a></li>
+        </ul>
+      </li>
+      <li><a href="javascript:void(0);" onclick="showAllSubjects();" class="btn-return">返回主页</a></li>
+    </ul>
+  </nav>
+
+  <section id="math" style="display:none;">
+    <h2>数学</h2>
+    <p>这里可以写数学相关的考试资料和学习资源。</p>
+    <a href="https://apcentral.collegeboard.org/courses/ap-calculus-ab" target="_blank" class="btn-subject">访问AP Calculus AB</a>
+    <a href="https://apcentral.collegeboard.org/courses/ap-statistics" target="_blank" class="btn-subject">访问AP Statistics</a>
+  </section>
+
+  <section id="english" style="display:none;">
+    <h2>英语</h2>
+    <p>这里可以写英语相关的考试资料和学习资源。</p>
+    <a href="https://apcentral.collegeboard.org/courses/ap-english-language-and-composition" target="_blank" class="btn-subject">访问AP English Language and Composition</a>
+  </section>
+
+  <section id="science" style="display:none;">
+    <h2>科学</h2>
+    <p>这里可以写科学相关的考试资料和学习资源。</p>
+    <a href="https://apcentral.collegeboard.org/courses/ap-biology" target="_blank" class="btn-subject">访问AP Biology</a>
+    <a href="https://apcentral.collegeboard.org/courses/ap-chemistry" target="_blank" class="btn-subject">访问AP Chemistry</a>
+    <a href="https://apcentral.collegeboard.org/courses/ap-physics-c-mechanics" target="_blank" class="btn-subject">访问AP Physics C: Mechanics</a>
+  </section>
+
+  <section id="history" style="display:none;">
+    <h2>世界史</h2>
+    <p>这里可以写世界史相关的考试资料和学习资源。</p>
+    <a href="https://apcentral.collegeboard.org/courses/ap-world-history" target="_blank" class="btn-subject">访问AP World History</a>
+  </section>
+
+  <section id="us-history" style="display:none;">
+    <h2>美国史</h2>
+    <p>这里可以写美国史相关的考试资料和学习资源。</p>
+    <a href="https://apcentral.collegeboard.org/courses/ap-united-states-history" target="_blank" class="btn-subject">访问AP United States History</a>
+  </section>
+
+  <section id="art-history" style="display:none;">
+    <h2>艺术史</h2>
+    <p>这里可以写艺术史相关的考试资料和学习资源。</p>
+    <a href="https://apcentral.collegeboard.org/courses/ap-art-history" target="_blank" class="btn-subject">访问AP Art History</a>
+  </section>
+
+  <footer>
+    <p>版权所有 &copy; 2023 HHC</p>
+    <button onclick="goToHomepage();" class="btn-return">返回个人主页</button>
+  </footer>
+</body>
+</html>
